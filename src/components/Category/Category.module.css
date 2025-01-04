@@ -1,0 +1,20 @@
+.category {
+  color: var(--secondary-color);
+  margin: 20px 60px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 10px;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 432px;
+  border-radius: 15px;
+}
+
+.videos {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+}

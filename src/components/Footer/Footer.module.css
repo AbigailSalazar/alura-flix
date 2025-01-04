@@ -1,0 +1,8 @@
+.footer{
+    height: 18vh;
+    padding:40px;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    border-top: 4px solid var(--accent-color);
+}

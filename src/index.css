@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #030910;
+  --secondary-color: #ffffff;
+  --terciary-color: #03122f;
+  --error-color: #e53935;
+  --accent-color: #2271d1;
+}
+
+.logo {
+  height: 40px;
+  width: 168px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Source Sans 3", serif;
+  background-color: #191919;
+}
+
+main {
+  min-height: 64vh;
+}
