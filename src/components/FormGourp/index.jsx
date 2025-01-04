@@ -1,7 +1,7 @@
 import styles from "./FormGroup.module.css";
 
 function FormGourp({ label, type, placeholder, options, color }) {
-  const borderStyle = { border: `2px solid var(${color})` };
+  const borderStyle = { border: `2px solid ${color}` };
   return (
     <div className={styles.form_group}>
       <label>{label}</label>
