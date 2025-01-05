@@ -65,6 +65,12 @@
 
 @media (max-width: 800px) {
   .container {
-    height: 40vh;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 575px) {
+  .container {
+    display: none;
   }
 }
