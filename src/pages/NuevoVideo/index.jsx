@@ -1,6 +1,6 @@
 import styles from "./NuevoVideo.module.css";
 import FormGourp from "../../components/FormGourp";
-import { MainContext } from "../../contexts/MainContext";
+import MainContext from "../../contexts/MainContext";
 import { useContext } from "react";
 
 function NuevoVideo() {

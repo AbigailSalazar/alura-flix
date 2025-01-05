@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styles from "./ModalEdit.module.css";
-import { MainContext } from "../../contexts/MainContext";
 import FormGourp from "../FormGourp";
+import MainContext from "../../contexts/MainContext";
 
 function ModalEdit({ video }) {
   const { ModalEditOpen, categories, toggleModalEdit } =

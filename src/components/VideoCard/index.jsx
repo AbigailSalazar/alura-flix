@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "./VideoCard.module.css";
-import { MainContext } from "../../contexts/MainContext";
+import MainContext from "../../contexts/MainContext";
 
 function VideoCard({ video, category }) {
   const { toggleModalEdit } = useContext(MainContext);
