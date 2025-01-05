@@ -63,3 +63,25 @@
 .fullwidth {
   grid-column: 1 / -1;
 }
+
+@media (max-width: 550px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+  .button_container button {
+    width: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 2.4rem;
+    margin-bottom: 0rem;
+  }
+  .button_container {
+    flex-direction: column;
+  }
+  .button_container button {
+    width: auto;
+  }
+}
