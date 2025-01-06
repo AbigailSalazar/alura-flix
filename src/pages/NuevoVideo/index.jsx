@@ -3,6 +3,7 @@ import Form from "../../components/Form/Index";
 import styles from "./NuevoVideo.module.css";
 import MainContext from "../../contexts/MainContext";
 import { ToastContainer, toast } from "react-toastify";
+import { showErrorToast, showSuccessToast } from "../../utils/Toast";
 
 function NuevoVideo() {
   const { videos, setVideos } = useContext(MainContext);
@@ -14,20 +15,6 @@ function NuevoVideo() {
     thumbnail: "",
     description: "",
   });
-
-  const notifySuccess = () =>
-    toast.success("Guardado correctamente!", {
-      autoClose: 3000,
-      closeOnClick: true,
-      pauseOnHover: false,
-    });
-
-  const notifyError = () =>
-    toast.error("Ha ocurrido un error!", {
-      autoClose: 3000,
-      closeOnClick: true,
-      pauseOnHover: false,
-    });
 
   const sendData = () => {
     let dataToSend = formValues;
@@ -43,11 +30,13 @@ function NuevoVideo() {
       .then((data) => {
         console.log("Success:", data);
         setVideos([...videos, data]);
-        notifySuccess();
+        showSuccessToast("Guardado correctamente!");
         return true;
       })
       .catch((error) => {
-        notifyError();
+        showErrorToast(
+          "Ha ocurrido un error en el servidor, intenta más tarde"
+        );
       });
   };
 

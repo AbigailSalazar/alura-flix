@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import MainContext from "../../contexts/MainContext";
 import FormGroup from "../FormGourp";
 import { toast } from "react-toastify";
+import { showErrorToast } from "../../utils/Toast";
 
 function Form({ styles, formValues, setFormValues, onSubmit }) {
   const { categories } = useContext(MainContext);
@@ -26,13 +27,6 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
     });
   };
 
-  const notifyError = () =>
-    toast.error("La url del video es invalida", {
-      autoClose: 3000,
-      closeOnClick: true,
-      pauseOnHover: false,
-    });
-
   useEffect(() => {
     //Autogenera el link the la thumbnail del video
     const url = formValues.url;
@@ -54,7 +48,7 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (invalidVideoUrl) {
-      notifyError();
+      showErrorToast("La url del video es invalida");
     } else {
       onSubmit();
     }
@@ -100,6 +94,7 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
         handleChange={handleChange}
         color={"#262626"}
         value={formValues.thumbnail}
+        required
       />
       <div className={styles.fullwidth}>
         <FormGroup

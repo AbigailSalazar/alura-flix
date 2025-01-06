@@ -3,24 +3,11 @@ import styles from "./ModalEdit.module.css";
 import MainContext from "../../contexts/MainContext";
 import Form from "../Form/Index";
 import { toast, ToastContainer } from "react-toastify";
+import { showErrorToast, showSuccessToast } from "../../utils/Toast";
 
 function ModalEdit() {
   const { setVideoToEdit, videos, setVideos, videoToEdit } =
     useContext(MainContext);
-
-  const notifySuccess = () =>
-    toast.success("Guardado correctamente!", {
-      autoClose: 3000,
-      closeOnClick: true,
-      pauseOnHover: false,
-    });
-
-  const notifyError = () =>
-    toast.error("Ha ocurrido un error!", {
-      autoClose: 3000,
-      closeOnClick: true,
-      pauseOnHover: false,
-    });
 
   const sendData = () => {
     let dataToSend = videoToEdit;
@@ -43,11 +30,13 @@ function ModalEdit() {
         });
         console.log("Video editado", data);
         setVideos(nuevosVideos);
-        notifySuccess();
+        showSuccessToast("Editado correctamente!");
         return true;
       })
       .catch((error) => {
-        notifyError();
+        showErrorToast(
+          "Ha ocurrido un error en el servidor, intenta más tarde"
+        );
       });
   };
 
