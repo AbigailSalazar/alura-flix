@@ -3,7 +3,7 @@ import styles from "./VideoCard.module.css";
 import MainContext from "../../contexts/MainContext";
 
 function VideoCard({ video, category }) {
-  const { toggleModalEdit } = useContext(MainContext);
+  const { setVideoToEdit } = useContext(MainContext);
 
   return (
     <div
@@ -13,7 +13,7 @@ function VideoCard({ video, category }) {
       <img className={styles.image} src={video.thumbnail} alt={video.title} />
       <div className={styles.button_container}>
         <button>🗑️ BORRAR</button>
-        <button onClick={toggleModalEdit}>✏️ EDITAR</button>
+        <button onClick={() => setVideoToEdit(video)}>✏️ EDITAR</button>
       </div>
     </div>
   );

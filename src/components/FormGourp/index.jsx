@@ -25,7 +25,7 @@ function FormGroup({
           onChange={handleChange}
           value={value}
         >
-          <option value="0" hidden>
+          <option value={0} hidden>
             Selecciona una categoria
           </option>
           {options.map((option) => (
@@ -42,6 +42,7 @@ function FormGroup({
           placeholder={placeholder}
           required={required}
           onChange={handleChange}
+          value={value}
         ></textarea>
       ) : (
         <input

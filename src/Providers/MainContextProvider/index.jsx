@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MainContext from "../../contexts/MainContext";
 
 function MainContextProvider({ children }) {
-  const [ModalEditOpen, setModalEditOpen] = useState(false);
+  const [videoToEdit, setVideoToEdit] = useState(null);
   const [categories, setCategories] = useState([]);
   const [videos, setVideos] = useState([]);
 
@@ -27,11 +27,6 @@ function MainContextProvider({ children }) {
     getVideos();
   }, []);
 
-  //Abrir y cerrar modal de edición
-  const toggleModalEdit = () => {
-    setModalEditOpen((prevState) => !prevState);
-  };
-
   return (
     <MainContext.Provider
       value={{
@@ -39,8 +34,8 @@ function MainContextProvider({ children }) {
         videos,
         setVideos,
         setCategories,
-        ModalEditOpen,
-        toggleModalEdit,
+        videoToEdit,
+        setVideoToEdit,
       }}
     >
       {children}

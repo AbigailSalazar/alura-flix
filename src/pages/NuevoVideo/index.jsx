@@ -8,11 +8,11 @@ function NuevoVideo() {
   const { videos, setVideos } = useContext(MainContext);
   const [formValues, setFormValues] = useState({
     id: 0,
-    titulo: "",
-    categoria: 0,
-    video: "",
+    categoryId: 0,
+    title: "",
+    url: "",
     thumbnail: "",
-    descripcion: "",
+    description: "",
   });
 
   const notifySuccess = () =>
@@ -30,23 +30,14 @@ function NuevoVideo() {
     });
 
   const sendData = () => {
-    const data = {
-      id: videos.length + 1,
-      title: formValues.titulo,
-      categoryId: formValues.categoria,
-      url: formValues.video,
-      thumbnail: formValues.thumbnail,
-      description: formValues.descripcion,
-    };
-
-    console.log(videos);
-
+    let dataToSend = formValues;
+    dataToSend.categoryId = Number(dataToSend.categoryId);
     fetch("https://aluraflix-api-dun.vercel.app/videos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(dataToSend),
     })
       .then((response) => response.json())
       .then((data) => {

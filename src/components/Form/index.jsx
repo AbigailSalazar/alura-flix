@@ -9,11 +9,12 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
 
   const resetForm = () => {
     setFormValues({
-      titulo: "",
-      categoria: "",
-      video: "",
+      id: 0,
+      categoryId: 0,
+      title: "",
+      url: "",
       thumbnail: "",
-      descripcion: "",
+      description: "",
     });
   };
 
@@ -34,7 +35,7 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
 
   useEffect(() => {
     //Autogenera el link the la thumbnail del video
-    const url = formValues.video;
+    const url = formValues.url;
     const regex =
       /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/shorts\/|embed\/))([\w-]{11})/;
     const match = url.match(regex);
@@ -48,50 +49,48 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
     } else {
       invalidVideoUrl = true;
     }
-  }, [formValues.video]);
+  }, [formValues.url]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (invalidVideoUrl) {
       notifyError();
     } else {
-      const success = await onSubmit();
-      if (success) {
-        resetForm();
-      }
+      onSubmit();
     }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <FormGroup
-        name="titulo"
+        name="title"
         type="text"
         label="Titulo"
         placeholder="Título del video"
         color={"#262626"}
         handleChange={handleChange}
         required
-        value={formValues.titulo}
+        value={formValues.title}
       ></FormGroup>
       <FormGroup
-        name="categoria"
+        name="categoryId"
         label="Categoria"
         type="select"
         options={categories}
         color={"#262626"}
         handleChange={handleChange}
+        value={formValues.categoryId}
         required
       />
       <FormGroup
-        name="video"
+        name="url"
         label="Video"
         type="url"
         placeholder="htttps://www.youtube.com/watch=?fjkdkf"
         color={"#262626"}
         handleChange={handleChange}
         required
-        value={formValues.video}
+        value={formValues.url}
       />
       <FormGroup
         name="thumbnail"
@@ -104,13 +103,13 @@ function Form({ styles, formValues, setFormValues, onSubmit }) {
       />
       <div className={styles.fullwidth}>
         <FormGroup
-          name="descripcion"
+          name="description"
           label="Descripción"
           type="textarea"
           placeholder="Escribe de que se trata el video"
           handleChange={handleChange}
           color={"#262626"}
-          value={formValues.descripcion}
+          value={formValues.description}
         />
       </div>
 
