@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Form from "../../components/Form/Index";
 import styles from "./NuevoVideo.module.css";
 import MainContext from "../../contexts/MainContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function NuevoVideo() {
   const { videos, setVideos } = useContext(MainContext);
@@ -13,6 +14,20 @@ function NuevoVideo() {
     thumbnail: "",
     descripcion: "",
   });
+
+  const notifySuccess = () =>
+    toast.success("Guardado correctamente!", {
+      autoClose: 3000,
+      closeOnClick: true,
+      pauseOnHover: false,
+    });
+
+  const notifyError = () =>
+    toast.error("Ha ocurrido un error!", {
+      autoClose: 3000,
+      closeOnClick: true,
+      pauseOnHover: false,
+    });
 
   const sendData = () => {
     const data = {
@@ -37,9 +52,11 @@ function NuevoVideo() {
       .then((data) => {
         console.log("Success:", data);
         setVideos([...videos, data]);
+        notifySuccess();
+        return true;
       })
       .catch((error) => {
-        console.error("Error:", error);
+        notifyError();
       });
   };
 
@@ -57,6 +74,7 @@ function NuevoVideo() {
           setFormValues={setFormValues}
           onSubmit={sendData}
         />
+        <ToastContainer />
       </div>
     </section>
   );
