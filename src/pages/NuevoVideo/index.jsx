@@ -1,10 +1,53 @@
+import { useContext, useState } from "react";
+import Form from "../../components/Form/Index";
 import styles from "./NuevoVideo.module.css";
-import FormGourp from "../../components/FormGourp";
 import MainContext from "../../contexts/MainContext";
-import { useContext } from "react";
 
 function NuevoVideo() {
-  const { categories } = useContext(MainContext);
+  const { categories, setCategories } = useContext(MainContext);
+  const [formValues, setFormValues] = useState({
+    id: 0,
+    titulo: "",
+    categoria: 0,
+    video: "",
+    thumbnail: "",
+    descripcion: "",
+  });
+
+  const sendData = () => {
+    const newData = categories.map((category) => {
+      if (category.id === Number(formValues.categoria)) {
+        return {
+          ...category,
+          videos: [
+            ...category.videos,
+            { ...formValues, id: category.videos.length }, // Agrega el nuevo video
+          ],
+        };
+      }
+      return category;
+    });
+    setCategories(newData);
+    console.log(newData);
+    fetch(
+      "https://my-json-server.typicode.com/AbigailSalazar/AluraFlixAPI/categories",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newData),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.content}>
@@ -13,45 +56,12 @@ function NuevoVideo() {
           COMPLETE EL FORMULARIO PARA CREAR UNA NUEVA TARJETA DE VIDEO
         </p>
         <h2 className={styles.subtitle}>Crear tarjeta</h2>
-        <form className={styles.form}>
-          <FormGourp
-            type="text"
-            label="Titulo"
-            placeholder="Título del video"
-            color={"#262626"}
-          ></FormGourp>
-          <FormGourp
-            label="Categoria"
-            type="select"
-            options={categories}
-            color={"#262626"}
-          />
-          <FormGourp
-            label="Thumbnail"
-            type="url"
-            placeholder="htttps://www.ejemplo.com/imagen.png"
-            color={"#262626"}
-          />
-          <FormGourp
-            label="Video"
-            type="url"
-            placeholder="htttps://www.youtube.com/watch=?fjkdkf"
-            color={"#262626"}
-          />
-          <div className={styles.fullwidth}>
-            <FormGourp
-              label="Descripción"
-              type="textarea"
-              placeholder="Escribe de que se trata el video"
-              color={"#262626"}
-            />
-          </div>
-
-          <div className={styles.button_container}>
-            <button>GUARDAR</button>
-            <button>LIMPIAR</button>
-          </div>
-        </form>
+        <Form
+          styles={styles}
+          formValues={formValues}
+          setFormValues={setFormValues}
+          onSubmit={sendData}
+        />
       </div>
     </section>
   );
