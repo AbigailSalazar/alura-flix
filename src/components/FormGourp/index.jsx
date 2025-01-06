@@ -23,6 +23,7 @@ function FormGroup({
           style={borderStyle}
           required={required}
           onChange={handleChange}
+          value={value}
         >
           <option value="0" hidden>
             Selecciona una categoria

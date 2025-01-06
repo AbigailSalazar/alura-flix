@@ -4,7 +4,7 @@ import styles from "./NuevoVideo.module.css";
 import MainContext from "../../contexts/MainContext";
 
 function NuevoVideo() {
-  const { categories, setCategories } = useContext(MainContext);
+  const { videos, setVideos } = useContext(MainContext);
   const [formValues, setFormValues] = useState({
     id: 0,
     titulo: "",
@@ -15,33 +15,28 @@ function NuevoVideo() {
   });
 
   const sendData = () => {
-    const newData = categories.map((category) => {
-      if (category.id === Number(formValues.categoria)) {
-        return {
-          ...category,
-          videos: [
-            ...category.videos,
-            { ...formValues, id: category.videos.length }, // Agrega el nuevo video
-          ],
-        };
-      }
-      return category;
-    });
-    setCategories(newData);
-    console.log(newData);
-    fetch(
-      "https://my-json-server.typicode.com/AbigailSalazar/AluraFlixAPI/categories",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newData),
-      }
-    )
+    const data = {
+      id: videos.length + 1,
+      title: formValues.titulo,
+      categoryId: formValues.categoria,
+      url: formValues.video,
+      thumbnail: formValues.thumbnail,
+      description: formValues.descripcion,
+    };
+
+    console.log(videos);
+
+    fetch("https://aluraflix-api-dun.vercel.app/videos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        setVideos([...videos, data]);
       })
       .catch((error) => {
         console.error("Error:", error);

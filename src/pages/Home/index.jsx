@@ -23,7 +23,6 @@ function Home() {
           <Category
             key={category.id}
             title={category.name}
-            videos={category.videos}
             category={category.id}
           />
         ))}
