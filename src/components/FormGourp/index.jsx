@@ -29,7 +29,7 @@ function FormGroup({
             Selecciona una categoria
           </option>
           {options.map((option) => (
-            <option className={styles.input} key={option.id} value={option.id}>
+            <option key={option.id} value={option.id}>
               {option.name}
             </option>
           ))}

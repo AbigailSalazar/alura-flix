@@ -17,8 +17,16 @@
   color: var(--secondary-color);
 }
 
+.input:focus {
+  outline: 2px solid var(--accent-color);
+}
+
 select {
   color: #a5a5a5;
+}
+
+option {
+  color: var(--terciary-color);
 }
 
 .input::placeholder {
