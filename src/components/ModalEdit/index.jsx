@@ -51,7 +51,7 @@ function ModalEdit() {
                 setVideoToEdit(null);
               }}
             >
-              <img src="src/assets/cross.svg" alt="Cerrar" />
+              <img src="assets/cross.svg" alt="Cerrar" />
             </button>
             <h2 className={styles.title}>EDITAR CARD</h2>
             <Form

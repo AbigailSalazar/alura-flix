@@ -7,10 +7,10 @@ function Footer() {
       <img className={styles.logo} src="/logo.svg" alt="AluraFlix logo" />
       <section className={styles.buttons_container}>
         <Link to="/" className={styles.home_button}>
-          <img src="/src/assets/home.svg" alt="home" /> HOME
+          <img src="assets/home.svg" alt="home" /> HOME
         </Link>
         <Link to="/nuevo">
-          <img src="/src/assets/plus.svg" alt="plus" />
+          <img src="assets/plus.svg" alt="plus" />
         </Link>
       </section>
     </footer>

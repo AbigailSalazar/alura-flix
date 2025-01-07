@@ -11,11 +11,11 @@ function Header() {
         <img src="/logo.svg" alt="AluraFlix logo" />
       </a>
       <div className={styles.link_container}>
-        <Link className={pathname == "/" && styles.link_actual} to="/">
+        <Link className={pathname == "/" ? styles.link_actual : ""} to="/">
           HOME
         </Link>
         <Link
-          className={pathname == "/nuevo" && styles.link_actual}
+          className={pathname == "/nuevo" ? styles.link_actual : ""}
           to="/nuevo"
         >
           NUEVO VIDEO
