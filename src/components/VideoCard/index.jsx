@@ -24,7 +24,6 @@ function VideoCard({ video, category, deleteVideo }) {
         } else {
           deleteVideo(video.id);
           showSuccessToast("Eliminado correctamente!");
-          console.log("Eliminado");
         }
       })
       .catch((error) => {
@@ -37,7 +36,9 @@ function VideoCard({ video, category, deleteVideo }) {
       className={styles.videocard}
       style={{ border: `4px solid var(--category-${category}-color)` }}
     >
-      <img className={styles.image} src={video.thumbnail} alt={video.title} />
+      <a href={video.url} target="_blank">
+        <img className={styles.image} src={video.thumbnail} alt={video.title} />
+      </a>
       <div className={styles.button_container}>
         <button onClick={confirmation}>🗑️ BORRAR</button>
         <button onClick={() => setVideoToEdit(video)}>✏️ EDITAR</button>
