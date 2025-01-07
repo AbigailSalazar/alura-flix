@@ -7,6 +7,11 @@ function Category({ title, category }) {
   const [categoryVideos, setCategoryVideos] = useState([]);
   const { videos } = useContext(MainContext);
 
+  const deletevideo = (id) => {
+    const newVideos = categoryVideos.filter((video) => video.id !== id);
+    setCategoryVideos(newVideos);
+  };
+
   useEffect(() => {
     const getVideos = async () => {
       const response = await fetch(
@@ -29,7 +34,12 @@ function Category({ title, category }) {
       </h1>
       <div className={styles.videos}>
         {categoryVideos.map((video) => (
-          <VideoCard key={video.id} video={video} category={category} />
+          <VideoCard
+            key={video.id}
+            video={video}
+            category={category}
+            deleteVideo={deletevideo}
+          />
         ))}
       </div>
     </section>

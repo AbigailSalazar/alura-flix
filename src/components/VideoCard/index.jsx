@@ -1,9 +1,36 @@
 import { useContext } from "react";
 import styles from "./VideoCard.module.css";
 import MainContext from "../../contexts/MainContext";
+import { showErrorToast, showSuccessToast } from "../../utils/Toast";
+import { confirmDialog } from "../ConfirmDialog";
 
-function VideoCard({ video, category }) {
+function VideoCard({ video, category, deleteVideo }) {
   const { setVideoToEdit } = useContext(MainContext);
+
+  const confirmation = () => {
+    confirmDialog(
+      "¿Estas seguro de eliminar este card de video?",
+      deleteVideoCard
+    );
+  };
+
+  const deleteVideoCard = () => {
+    fetch(`https://aluraflix-api-dun.vercel.app/videos/${video.id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          showErrorToast("Error al eliminar este video");
+        } else {
+          deleteVideo(video.id);
+          showSuccessToast("Eliminado correctamente!");
+          console.log("Eliminado");
+        }
+      })
+      .catch((error) => {
+        showErrorToast("Error del servidor, intente más tarde");
+      });
+  };
 
   return (
     <div
@@ -12,7 +39,7 @@ function VideoCard({ video, category }) {
     >
       <img className={styles.image} src={video.thumbnail} alt={video.title} />
       <div className={styles.button_container}>
-        <button>🗑️ BORRAR</button>
+        <button onClick={confirmation}>🗑️ BORRAR</button>
         <button onClick={() => setVideoToEdit(video)}>✏️ EDITAR</button>
       </div>
     </div>
