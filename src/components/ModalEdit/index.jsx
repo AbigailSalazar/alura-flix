@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./ModalEdit.module.css";
 import MainContext from "../../contexts/MainContext";
-import Form from "../Form/Index";
+import Form from "../Form/";
 import { toast, ToastContainer } from "react-toastify";
 import { showErrorToast, showSuccessToast } from "../../utils/Toast";
 
