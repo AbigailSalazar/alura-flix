@@ -44,6 +44,20 @@ function ModalEdit() {
     setVideoToEdit(null);
   };
 
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   return (
     <>
       {videoToEdit != null && (
