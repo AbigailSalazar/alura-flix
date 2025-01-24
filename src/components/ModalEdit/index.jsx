@@ -40,17 +40,16 @@ function ModalEdit() {
       });
   };
 
+  const handleClose = () => {
+    setVideoToEdit(null);
+  };
+
   return (
     <>
       {videoToEdit != null && (
-        <dialog open={true} className={styles.container}>
-          <div className={styles.modal}>
-            <button
-              className={styles.close_button}
-              onClick={() => {
-                setVideoToEdit(null);
-              }}
-            >
+        <dialog open={true} className={styles.container} onClick={handleClose}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.close_button} onClick={handleClose}>
               <img src="assets/cross.svg" alt="Cerrar" />
             </button>
             <h2 className={styles.title}>EDITAR CARD</h2>
