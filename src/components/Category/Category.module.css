@@ -22,6 +22,7 @@
   overflow-x: scroll;
   flex-wrap: nowrap;
   width: 100%;
+  padding: 15px 0px;
 }
 
 @media (max-width: 811px) {

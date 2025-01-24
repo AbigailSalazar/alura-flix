@@ -12,7 +12,7 @@
 }
 
 .modal {
-  width: 50%;
+  width: 40%;
   background-color: var(--terciary-color);
   border-radius: 15px;
   padding: 60px;
@@ -22,6 +22,8 @@
   flex-direction: column;
   gap: 25px;
   align-items: center;
+  max-height: 90%;
+  overflow-y: scroll;
 }
 
 .close_button {
